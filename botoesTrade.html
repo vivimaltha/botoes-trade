@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tipos de Ação - Copiar Texto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100vh;
+    }
+
+    .titulo {
+      max-width: 800px;
+      text-align: center;
+      margin: 40px 20px 20px 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 0 20px 40px 20px;
+    }
+
+    .botao {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+      padding: 12px 15px;
+      margin: 8px 0;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #f47820; /* Laranja STIHL */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-align: left;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, transform 0.1s;
+      position: relative;
+    }
+
+    .botao:hover {
+      background-color: #e06c1d;
+    }
+
+    .botao.copiado {
+      background-color: #c35c13;
+    }
+
+    .feedback {
+      display: none;
+      margin-left: 10px;
+      font-size: 16px;
+    }
+
+    .botao.copiado .feedback {
+      display: inline;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-3px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    footer {
+      width: 100%;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #f47820;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="titulo">
+    Clique em um dos botões abaixo para copiar o texto do <u>Tipo de Ação</u> correspondente:
+  </div>
+
+  <div class="container">
+    <button class="botao" onclick="copiarTexto(this, 'Incentivo para uma revenda se tornar concessionária')">
+      Incentivo para uma revenda se tornar concessionária
+      <span class="feedback">✅ Copiado!</span>
+    </button>
+
+    <button class="botao" onclick="copiarTexto(this, 'Incentivo para uma concessionária se tornar Elite')">
+      Incentivo para uma concessionária se tornar Elite
+      <span class="feedback">✅ Copiado!</span>
+    </button>
+
+    <button class="botao" onclick="copiarTexto(this, 'Incentivo para aprimorar concessionárias Elite, concessionárias, revendas e cooperativas')">
+      Incentivo para aprimorar concessionárias Elite, concessionárias, revendas e cooperativas
+      <span class="feedback">✅ Copiado!</span>
+    </button>
+
+    <button class="botao" onclick="copiarTexto(this, 'Incentivo para que um ponto de venda da concorrência vire STIHL')">
+      Incentivo para que um ponto de venda da concorrência vire STIHL
+      <span class="feedback">✅ Copiado!</span>
+    </button>
+
+    <button class="botao" onclick="copiarTexto(this, 'Incentivo para um empresário que não está no ramo abrir uma loja')">
+      Incentivo para um empresário que não está no ramo abrir uma loja
+      <span class="feedback">✅ Copiado!</span>
+    </button>
+
+    <button class="botao" onclick="copiarTexto(this, 'Incentivo para abertura de filial')">
+      Incentivo para abertura de filial
+      <span class="feedback">✅ Copiado!</span>
+    </button>
+  </div>
+
+  <footer>
+    <a href="https://stihlgroup.sharepoint.com/sites/OneCRMSupport-Portugs/SitePages/Trade_Consultores.aspx">
+      Retornar ao Espaço de Suporte ao OneCRM
+    </a>
+  </footer>
+
+  <script>
+    function copiarTexto(botao, texto) {
+      navigator.clipboard.writeText(texto)
+        .then(() => {
+          // Remove estado 'copiado' de outros botões
+          document.querySelectorAll('.botao').forEach(b => b.classList.remove('copiado'));
+
+          // Adiciona estado 'copiado' ao botão clicado
+          botao.classList.add('copiado');
+
+          // Remove feedback após 2 segundos
+          setTimeout(() => {
+            botao.classList.remove('copiado');
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('Erro ao copiar: ', err);
+        });
+    }
+  </script>
+
+</body>
+</html>
